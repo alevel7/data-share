@@ -6,7 +6,8 @@
   "scripts": {
     "start:dev": "ts-node-dev --respawn --transpile-only --exit-child src/server.ts",
     "build": "tsc",
-    "start": "npm run build && node build/server.js"
+    "prepare": "cp ./src/configs/data-share-auth-firebase-adminsdk-n3wpg-b44bd9465c.json ./build/configs",
+    "start": "npm run build && npm run prepare && node build/server.js"
   },
   "keywords": [],
   "author": "",
