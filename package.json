@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "ts-node-dev --respawn --transpile-only --exit-child src/server.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "production": "npm run build && node build/server.js"
   },
   "keywords": [],
   "author": "",
