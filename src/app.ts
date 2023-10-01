@@ -1,6 +1,6 @@
 import express from 'express'
-import { userRoutes } from './routes';
-
+import { companyRoutes, userRoutes } from './routes';
+import authMiddleware from './middlewares/auth.middleware'
 
 class App {
     public server;
@@ -12,11 +12,13 @@ class App {
     }
 
     middlewares() {
-        this.server.use(express.json())
+        this.server.use(express.json());
+        this.server.use('/uploads', express.static('uploads'));
     }
 
     routes() {
         this.server.use('/api/users', userRoutes);
+        this.server.use('/api/companies', authMiddleware, companyRoutes);
     }
 }
 

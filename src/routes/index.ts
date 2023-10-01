@@ -1,5 +1,7 @@
 import userRoutes from './user.routes';
+import companyRoutes from './company.routes';
 
 export {
-    userRoutes
+    userRoutes,
+    companyRoutes
 }

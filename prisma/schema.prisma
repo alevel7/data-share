@@ -11,6 +11,7 @@ model User {
   id        String    @id @default(cuid())
   firstName String
   lastName  String
+  email     String    @unique
   isAdmin   Boolean   @default(false)
   companies Company[]
   createdAt DateTime  @default(now())
@@ -21,10 +22,10 @@ model Company {
   name             String
   numberOfUsers    Int
   numberOfProducts Int
-  logo             String
-  // Percentage
+  logo             String?
+  Percentage       Decimal  @default(0)
   user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId           String   @unique
+  userId           String
   createdAt        DateTime @default(now())
 
   @@index([name])
