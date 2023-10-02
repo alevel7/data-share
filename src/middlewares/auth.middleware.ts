@@ -7,11 +7,11 @@ import prisma from "../services/prisma";
 const authMiddleware = (request: AuthRequest, response: Response, next: NextFunction) => {
     const headerToken = request.headers.authorization;
     if (!headerToken) {
-        return response.send({ message: "No token provided" }).status(401);
+        return response.status(401).send({ message: "No token provided" }).status(401);
     }
 
     if (headerToken && headerToken.split(" ")[0] !== "Bearer") {
-        return response.send({ message: "Invalid token" }).status(401);
+        return response.status(401).send({ message: "Invalid token" }).status(401);
     }
 
     const token = headerToken.split(" ")[1];
@@ -28,7 +28,7 @@ const authMiddleware = (request: AuthRequest, response: Response, next: NextFunc
                 request.userLocalData = user;
                 next();
             })
-                .catch(() => response.send({ message: "User credential not found, pls Register" }))
+                .catch(() => response.status(401).send({ message: "User credential not found, pls Register" }))
         })
         .catch(() => response.send({ message: "Unable to verify user, pls login again" }).status(403));
 }
