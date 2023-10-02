@@ -2,6 +2,7 @@ import express from 'express'
 import { companyRoutes, userRoutes } from './routes';
 import authMiddleware from './middlewares/auth.middleware'
 
+const cors = require('cors');
 class App {
     public server;
 
@@ -14,6 +15,7 @@ class App {
     middlewares() {
         this.server.use(express.json());
         this.server.use('/uploads', express.static('uploads'));
+        this.server.use(cors())
     }
 
     routes() {
