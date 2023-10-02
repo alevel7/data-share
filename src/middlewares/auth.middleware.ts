@@ -30,7 +30,7 @@ const authMiddleware = (request: AuthRequest, response: Response, next: NextFunc
             })
                 .catch(() => response.status(401).send({ message: "User credential not found, pls Register" }))
         })
-        .catch(() => response.send({ message: "Unable to verify user, pls login again" }).status(403));
+        .catch(() => response.status(403).send({ message: "Unable to verify user, pls login again" }));
 }
 
 export const isAdmin = (request: AuthRequest, response: Response, next: NextFunction) => {
