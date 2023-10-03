@@ -37,6 +37,7 @@ export const isAdmin = (request: AuthRequest, response: Response, next: NextFunc
     if (!request.userLocalData?.isAdmin) {
         return response.status(403).json({ message: "forbidden!" })
     }
+    next()
 }
 
 
